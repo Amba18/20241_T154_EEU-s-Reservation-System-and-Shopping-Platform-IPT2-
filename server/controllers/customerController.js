@@ -28,15 +28,33 @@ const getCustomerByEmail = async (req, res) => {
 };
 
 const postCustomer = async (req, res) => {
+    console.log("Received signup request:", req.body); // Log request body
+
     try {
-        const customer = new Customer(req.body);
+        const { firstName, lastName, email, password } = req.body;
+
+        // Check if all fields are provided
+        if (!firstName || !lastName || !email || !password) {
+            return res.status(400).json({ message: "All fields are required" });
+        }
+
+        // Check if a customer with the email already exists
+        const existingCustomer = await Customer.findOne({ email });
+        if (existingCustomer) {
+            return res.status(400).json({ message: "Email already in use" });
+        }
+
+        // Create a new customer
+        const customer = new Customer({ firstName, lastName, email, password });
         const savedCustomer = await customer.save();
-        res.status(201).json(savedCustomer);
+        console.log("Customer saved successfully:", savedCustomer); // Log successful save
+        res.status(201).json({ message: "Signup successful!" });
     } catch (error) {
-        console.error(error);
+        console.error("Error during signup:", error); // Log error details
         res.status(500).json({ message: "Error saving customer" });
     }
 };
+
 
 // Update customer by email
 const updateCustomer = async (req, res) => {

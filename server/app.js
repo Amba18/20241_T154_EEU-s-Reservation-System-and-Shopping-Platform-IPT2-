@@ -7,14 +7,21 @@ import customerRoute from './routes/customerRoute.js';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000; // Default to port 3000 if PORT is not defined
+const port = process.env.PORT || 3000; // Set 3000 as default
+
+// CORS options
+const corsOptions = {
+    origin: "http://localhost:3001", // Allow requests from your frontend
+    credentials: true, // Allow credentials if needed
+};
+
+app.use(cors(corsOptions)); // Use the CORS middleware with options
 
 // Middleware
-app.use(cors());
 app.use(express.json()); // Parse JSON bodies
 
 // Routes
-app.use('/api/Customer', customerRoute);
+app.use('/api/Customer', customerRoute); // Correct route to match your controller
 
 // MongoDB Connection
 const connect = async () => {
@@ -25,7 +32,6 @@ const connect = async () => {
         console.error("Error connecting to MongoDB:", error);
     }
 };
-
 
 // MongoDB Event Listeners
 mongoose.connection.on('disconnected', () => {

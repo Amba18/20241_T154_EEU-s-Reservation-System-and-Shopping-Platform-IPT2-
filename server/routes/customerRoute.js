@@ -9,8 +9,8 @@ router.get('/', getCustomers);
 // Route to get a customer by email
 router.get('/email/:email', getCustomerByEmail);
 
-// Route to add a new customer with duplicate check
-router.post('/', postCustomer);
+// Route to add a new customer (signup)
+router.post('/', postCustomer); // This will handle both signup and login logic in postCustomer
 
 // Route to update a customer by email
 router.put('/email/:email', updateCustomer);
@@ -19,4 +19,3 @@ router.put('/email/:email', updateCustomer);
 router.delete('/email/:email', deleteCustomer);
 
 export default router;
-

@@ -1,8 +1,6 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const { Schema } = mongoose;
-
-const customerSchema = new Schema({
+const customerSchema = new mongoose.Schema({
     firstName: {
         type: String,
         required: true,
@@ -14,12 +12,15 @@ const customerSchema = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true, // Ensure that email is unique
     },
     password: {
         type: String,
         required: true,
-    }
+    },
 });
 
-const customerModel = mongoose.model('customer', customerSchema);
-export default customerModel; // Export the model, not the schema
+// Create a Customer model based on the schema
+const Customer = mongoose.model('Customer', customerSchema);
+
+export default Customer;

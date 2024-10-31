@@ -1,0 +1,120 @@
+.upper-navbar {
+    display: flex;
+    justify-content: space-between; /* Space between the left and right sections */
+    align-items: center; /* Center-align items vertically */
+    background-color: #191E4C;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .search input {
+      width: 40rem;
+  }
+  
+  .search-button {
+      position: absolute;
+      background-color: transparent;
+      border: none;
+      margin-left: 51rem;
+  
+  }
+  
+  .upper-navbar-a {
+    display: flex; /* Arrange items in a row */
+    gap: 2rem; /* Space between each item */
+    margin-right: 1rem;
+  }
+  
+  .upper-navbar-a ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .eeu h3 {
+    margin: 0;
+    margin-left: 1rem;
+  }
+  
+  .side-navbar {
+      border: 1px solid hsl(0, 0%, 80%);
+      position: absolute;
+      height: 85%;
+      width: 15%;
+      margin-left: 10px;
+      margin-top: 10px;
+      box-shadow: 2px 4px 8px rgba(0, 0, 0.20, 0.20);
+  }
+  
+  .side-navbar-a {
+    list-style-type: none; /* Removes bullets */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 1rem; /* Adds space between items */
+    margin-top: 3rem;
+    margin-left: 40px;
+  }
+  
+  .side-navbar h5 {
+      margin-top: 2rem;
+      margin-left: 40px;
+  }
+  
+  .side-navbar-a li {
+     
+      cursor: pointer;
+  }
+  
+  .content {
+      border: 1px solid hsl(0, 0%, 80%);
+      position: absolute;
+      height: 85%;
+      width: 83%;
+      margin-top: 10px;
+      margin-left: 205px;
+      box-shadow: 2px 4px 8px rgba(0, 0, 0.20, 0.20);
+  }
+  
+  .content-1 {
+      margin-left: 40px;
+      margin-top: 25px;
+  }
+  
+  .content-1 h3 {
+    margin-bottom: 3rem; /* Distance below the h3 */
+  }
+  
+  
+  .content-1 p {
+    margin-top: 0.5rem; /* Distance above each p */
+    margin-left: 2rem;
+  }
+  
+  .content-1 span {
+      margin-left: 10rem;
+      
+  }
+  
+  .content-2 {
+      position: absolute;
+      margin-left: 32rem;
+      margin-top: 7.2rem;
+  }
+  
+  .content button {
+      margin-top: 10rem;
+      margin-left: 22rem;
+      width: 20rem;
+      height: 30px;
+      background-color: #191E4C;
+      color: white;
+      border: none;
+  }
+  
+  
+  
+  
+  

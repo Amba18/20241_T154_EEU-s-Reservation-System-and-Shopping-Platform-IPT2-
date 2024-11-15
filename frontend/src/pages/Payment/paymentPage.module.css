@@ -36,10 +36,12 @@
   width: 35rem;
 }
 
-.button{
-  margin: 2rem;
-  width: 35rem;
-  height: 20px;
-  background-color: blue;
+.btn{
+  
+  border-color:  #001aff;
+  color: #001aff;
+  height: 35px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px 0;
 
 }

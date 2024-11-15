@@ -98,6 +98,26 @@ router.get(
     res.send(orders);
   })
 );
+// Update order status to 'PAYED' when the order is confirmed
+// Update order status to 'PAYED' when the order is confirmed
+router.put(
+  '/confirmOrder',
+  handler(async (req, res) => {
+    const order = await getNewOrderForCurrentUser(req);
+
+    if (!order) {
+      res.status(BAD_REQUEST).send('Order Not Found!');
+      return;
+    }
+
+    order.status = OrderStatus.PAYED;
+    await order.save();
+
+    sendEmailReceipt(order);
+
+    res.send({ message: 'Order confirmed and paid', orderId: order._id });
+  })
+);
 
 const getNewOrderForCurrentUser = async req =>
   await OrderModel.findOne({

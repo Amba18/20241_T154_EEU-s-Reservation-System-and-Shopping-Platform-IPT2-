@@ -4,8 +4,8 @@ export const sendEmailReceipt = function (order) {
   const mailClient = getClient();
 
   mailClient.messages
-    .create('sandbox80bf0ab584cb42dbbf5cf0e9a249e188.mailgun.org', {
-      from: 'orders@foodmine.com',
+    .create('sandboxa9034c38c00f44e9adb4b1bc788e4249.mailgun.org', {
+      from: 'orders@EEUreservation.com',
       to: order.user.email,
       subject: `Order ${order.id} is being processed`,
       html: getReceiptHtml(order),
@@ -34,8 +34,9 @@ const getReceiptHtml = function (order) {
       </style>
     </head>
     <body>
-      <h1>Order Payment Confirmation</h1>
+      <h1>Order Confirmation</h1>
       <p>Dear ${order.name},</p>
+      <p>This is Lister Rodriguez, Lead Programmer of Catalyst Crew</p>
       <p>Thank you for choosing us! Your order has been successfully paid and is now being processed.</p>
       <p><strong>Tracking ID:</strong> ${order.id}</p>
       <p><strong>Order Date:</strong> ${order.createdAt

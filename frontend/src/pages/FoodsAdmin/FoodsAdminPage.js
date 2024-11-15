@@ -32,7 +32,7 @@ export default function FoodsAdminPage() {
   };
 
   const deleteFood = async food => {
-    const confirmed = window.confirm(`Delete Food ${food.name}?`);
+    const confirmed = window.confirm(`Delete Item ${food.name}?`);
     if (!confirmed) return;
 
     await deleteById(food.id);

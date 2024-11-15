@@ -33,3 +33,12 @@ export const getAllStatus = async () => {
   const { data } = await axios.get(`/api/orders/allstatus`);
   return data;
 };
+
+export const confirmOrder = async () => {
+  try {
+    const response = await axios.put('/api/orders/confirmOrder');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

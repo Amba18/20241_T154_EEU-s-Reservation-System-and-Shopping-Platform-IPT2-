@@ -46,7 +46,7 @@ export default function OrdersPage() {
           {allStatus.map(state => (
             <Link
               key={state}
-              className={state == filter ? classes.selected : ''}
+              className={state === filter ? classes.selected : ''}
               to={`/orders/${state}`}
             >
               {state}
@@ -88,8 +88,6 @@ export default function OrdersPage() {
                   <Price price={order.totalPrice} />
                 </span>
               </div>
-              <div>Confirm</div>
-              <div>Decline</div>
             </div>
           </div>
         ))}

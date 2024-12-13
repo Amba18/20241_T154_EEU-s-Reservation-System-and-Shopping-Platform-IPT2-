@@ -1,0 +1,193 @@
+/* Main Container */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 60rem;
+  /* Slightly reduced max-width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Add Food Button Styling */
+a.add_food {
+  display: inline-block;
+  background: #191E4C;
+  color: white;
+  padding: 0.6rem 1rem;
+  /* Reduced padding */
+  margin-bottom: 1.5rem;
+  /* Reduced margin */
+  border-radius: 30px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+a.add_food:hover {
+  background-color: #34d399;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+/* List Styling */
+.list {
+  width: 100%;
+  padding: 1.2rem;
+  /* Reduced padding */
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  
+}
+
+/* List Item Styling */
+/* List Item Styling */
+.list_item {
+  display: grid;
+  grid-template-columns: 50px 1fr 80px 80px;
+  
+  /* Adjusted column sizes */
+  /* Reduced column sizes */
+  gap: 1.5rem;
+  /* Reduced gap */
+  font-size: 1.05rem;
+  /* Slightly smaller font */
+  padding: 0.8rem;
+  /* Reduced padding */
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+  border: 1px solid hsl(0, 0%, 95%);
+}
+
+.list_item:hover {
+  background-color: #f1f5f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.list_item img {
+  width: 35px;
+  /* Reduced image size */
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Actions Styling */
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  /* Reduced gap */
+  align-items: center;
+  margin-left: -1.5rem;
+  /* Shifted buttons further left */
+}
+
+.actions a {
+  color: #2563eb;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.actions a:hover {
+  color: #3b82f6;
+}
+
+/* Delete Button */
+.delete_button {
+  background-color: #ef4444;
+  color: white;
+  font-weight: bold;
+  padding: 6px 12px;
+  /* Reduced padding */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.delete_button:hover {
+  background-color: #dc2626;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.delete_button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(230, 57, 58, 0.7);
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal_content {
+  background: white;
+  padding: 20px;
+  /* Reduced padding */
+  border-radius: 12px;
+  width: 400px;
+  /* Reduced width */
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  animation: modalAnimation 0.3s ease-out;
+}
+
+/* Modal Button Styling */
+.modal_actions button {
+  margin: 8px;
+  padding: 10px 20px;
+  /* Reduced padding */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel_button {
+  background-color: #e5e7eb;
+  color: #333;
+}
+
+.confirm_button {
+  background-color: #e63946;
+  color: white;
+}
+
+.cancel_button:hover,
+.confirm_button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes modalAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

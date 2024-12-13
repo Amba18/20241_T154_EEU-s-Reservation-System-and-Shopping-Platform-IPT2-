@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.container input {
+  border: none;
+  width: 40rem;
+  background-color: #f1f1f1;
+  padding: 0.6rem 1.2rem;
+  /* Adjusted padding for desired height */
+  font-size: 1rem;
+  font-weight: 500;
+  outline: none;
+  box-sizing: border-box;
+  /* Includes padding in the height calculation */
+  border-top-left-radius: 5px;
+  /* Upper left corner */
+  border-bottom-left-radius: 5px;
+  /* Lower left corner */
+}
+
+.container button {
+  padding: 0.6rem 1rem;
+  /* Matches the input's height */
+  font-size: 1rem;
+  border: none;
+  background-color: #191E4C;
+  color: white;
+  outline: none;
+  box-sizing: border-box;
+  border-top-right-radius: 5px;
+  /* Upper right corner */
+  border-bottom-right-radius: 5px;
+  /* Lower right corner */
+}
+
+.container button:hover {
+  background: #202978;
+  /* Lighter shade of blue */
+  color: #f1f1f1;
+  /* Change text color slightly */
+  opacity: 0.9;
+  /* Add slight transparency */
+  cursor: pointer;
+  /* Indicate it's clickable */
+}
+
+.container button:hover {
+  opacity: 1;
+  cursor: pointer;
+}

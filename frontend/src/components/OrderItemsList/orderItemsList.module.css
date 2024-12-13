@@ -1,0 +1,36 @@
+.table {
+  width: 100%;
+  border: 1px solid hsl(0, 0%, 80%);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.table td {
+  height: 3rem;
+}
+
+.table td img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 100rem;
+}
+
+.table h3 {
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+  color: grey;
+}
+
+.table a:hover {
+  opacity: 0.9;
+}
+
+.salesContainer {
+  padding-top: 10px;
+  text-align: right;
+  font-size: 1.2em;
+  color: green;
+}

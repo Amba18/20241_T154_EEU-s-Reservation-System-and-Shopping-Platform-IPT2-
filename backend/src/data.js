@@ -1,4 +1,4 @@
-export const sample_foods = [
+export const  sample_goods = [
   {
     id: '1',
     name: 'Canvass Bag (flat)',
@@ -6,7 +6,7 @@ export const sample_foods = [
     favorite: false,
     stars: 4.5,
     imageUrl: 'Item-1.png',
-    tags: ['Mugs'],
+    tags: ['Bags'],
   },
   {
     id: '2',

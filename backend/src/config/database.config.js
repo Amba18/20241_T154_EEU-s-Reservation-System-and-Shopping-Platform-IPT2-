@@ -2,7 +2,7 @@ import { connect, set } from 'mongoose';
 import { UserModel } from '../models/user.model.js';
 import { FoodModel } from '../models/food.model.js';
 import { TagModel } from '../models/tag.model.js';
-import { sample_users, sample_foods, sample_tags } from '../data.js';
+import { sample_users,  sample_goods, sample_tags } from '../data.js';
 import bcrypt from 'bcryptjs';
 
 const PASSWORD_HASH_SALT_ROUNDS = 10;
@@ -40,7 +40,7 @@ async function seedUsers() {
 
 async function seedFoods() {
   await FoodModel.deleteMany({}); // Clear existing data
-  for (const food of sample_foods) {
+  for (const food of  sample_goods) {
     food.imageUrl = `/foods/${food.imageUrl}`;
     await FoodModel.create(food);
   }

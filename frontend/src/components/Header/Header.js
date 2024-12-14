@@ -44,6 +44,7 @@ export default function Header() {
         </Link>
         {weatherData && (
           <div className={classes.weather}>
+            <span>Malaybalay's weather condition is :</span>
             <span>{weatherData.WeatherText}</span>
             <span>{weatherData.Temperature.Metric.Value}°{weatherData.Temperature.Metric.Unit}</span>
           </div>

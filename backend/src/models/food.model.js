@@ -21,4 +21,4 @@ export const ItemSchema = new Schema(
   }
 );
 
-export const FoodModel = model('food', ItemSchema);
+export const FoodModel = model('item', ItemSchema);

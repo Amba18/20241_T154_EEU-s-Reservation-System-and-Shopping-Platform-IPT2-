@@ -3,6 +3,14 @@
   margin: 0 2rem 6rem 2rem;
   flex-wrap: wrap;
   justify-content: center;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  width: 50rem;
+  height: 45rem;
+  margin: 1rem auto 10rem auto;
+    margin-top: 1rem;
+    background-color: #fff;
 }
 
 .content {

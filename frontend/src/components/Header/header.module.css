@@ -1,4 +1,9 @@
 .header {
+  position: sticky;
+  top: 0;
+  /* Sticks the header to the top of the viewport */
+  z-index: 1000;
+  /* Ensures the header stays above other elements */
   background: #191E4C;
   padding: 0;
 }

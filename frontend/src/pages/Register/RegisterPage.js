@@ -7,11 +7,11 @@ import Button from '../../components/Button/Button';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { GoogleOAuthProvider} from '@react-oauth/google';
 
 export default function RegisterPage() {
   const auth = useAuth();
-  const { user, register, loginWithGoogle } = auth;
+  const { user, register } = auth;
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
@@ -28,9 +28,10 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (!user) return;
-
+  
     returnUrl ? navigate(returnUrl) : navigate('/');
-  }, [user]);
+  }, [user, navigate, returnUrl]);
+  
 
   const handleCaptchaChange = (value) => {
     setCaptchaToken(value);
@@ -48,14 +49,6 @@ export default function RegisterPage() {
 
   const password = watch('password');
 
-  const handleGoogleSuccess = async (response) => {
-    const { credential } = response;
-    await loginWithGoogle(credential);
-  };
-
-  const handleGoogleFailure = (response) => {
-    console.error('Google sign-up failed:', response);
-  };
 
   const passwordValidation = {
     required: 'Password is required',
@@ -149,15 +142,6 @@ export default function RegisterPage() {
             </div>
 
             <Button type="submit" text="Register" />
-
-            <div className={classes.googleLogin}>
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onFailure={handleGoogleFailure}
-                cookiePolicy={'single_host_origin'}
-                size="large" // Adjust the size of the button
-              />
-            </div>
 
             <div className={classes.login}>
               Already have an account? &nbsp;

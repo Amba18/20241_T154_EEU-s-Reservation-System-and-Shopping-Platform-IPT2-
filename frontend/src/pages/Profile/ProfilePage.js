@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../hooks/useAuth';
 import classes from './profilePage.module.css';
@@ -32,6 +32,14 @@ export default function ProfilePage() {
   const handleCancel = () => {
     setPendingUserData(null); // Clear data
     setIsModalOpen(false); // Close modal
+  };
+
+  // Get the timestamps from the user and check if they are valid dates
+  const { createdAt, updatedAt } = user;
+
+  const formatDate = (date) => {
+    const parsedDate = new Date(date);
+    return isNaN(parsedDate.getTime()) ? 'Invalid Date' : parsedDate.toLocaleString();
   };
 
   return (
@@ -88,6 +96,12 @@ export default function ProfilePage() {
         </form>
 
         <ChangePassword />
+
+        {/* Display timestamps */}
+        <div className={classes.timestamps}>
+          <p><strong>Account Created:</strong> {formatDate(createdAt)}</p>
+          <p><strong>Last Updated:</strong> {formatDate(updatedAt)}</p>
+        </div>
       </div>
     </div>
   );

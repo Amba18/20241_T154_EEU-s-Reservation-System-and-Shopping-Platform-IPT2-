@@ -31,6 +31,11 @@
   align-items: center;
   z-index: 1000;
 }
+.timestamp {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
 
 .modal {
   background: #fff;
@@ -40,6 +45,15 @@
   text-align: center;
   max-width: 500px;
   width: 100%;
+}
+.timestamps {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.timestamps p {
+  margin: 5px 0;
 }
 
 .modal p {

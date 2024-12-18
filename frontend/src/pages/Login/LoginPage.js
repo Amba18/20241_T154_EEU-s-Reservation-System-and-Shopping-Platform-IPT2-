@@ -40,9 +40,16 @@ export default function LoginPage() {
       setShowAlert(true);
       return;
     }
-
-    await login(email, password, captchaToken);
+  
+    try {
+      await login(email, password, captchaToken);
+    } catch (error) {
+      const errorMessage = error.response?.data || 'An unexpected error occurred';
+      setAlertMessage(errorMessage);
+      setShowAlert(true);
+    }
   };
+  
 
   return (
     <div className={classes.container}>

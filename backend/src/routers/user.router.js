@@ -8,21 +8,29 @@ import bcrypt from 'bcryptjs';
 import auth from '../middleware/auth.mid.js';
 import admin from '../middleware/admin.mid.js';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
-
 router.post(
   '/login',
   handler(async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
-      res.send(generateTokenResponse(user));
-      return;
+    if (!user) {
+      return res.status(BAD_REQUEST).send('Username or password is invalid');
+    }
+
+    if (user.onEdit) {
+      return res.status(BAD_REQUEST).send('Your account is currently being edited. Please try again later.');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (isPasswordValid) {
+      return res.send(generateTokenResponse(user));
     }
 
     res.status(BAD_REQUEST).send('Username or password is invalid');
   })
 );
+
 
 router.post(
   '/register',
@@ -64,7 +72,14 @@ router.put(
       { new: true }
     );
 
-    res.send(generateTokenResponse(user));
+    // Include timestamps in the response
+    const userWithTimestamp = {
+      ...user.toObject(),
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt
+    };
+
+    res.send(generateTokenResponse(userWithTimestamp));
   })
 );
 
@@ -137,20 +152,76 @@ router.get(
     res.send(user);
   })
 );
+router.get(
+  '/me',
+  auth,
+  handler(async (req, res) => {
+    const user = await UserModel.findById(req.user.id, { password: 0 });
+    if (!user) {
+      res.status(404).send({ error: 'User not found' });
+      return;
+    }
+
+    // Send the user data including timestamps
+    res.status(200).send({
+      ...user.toObject(),
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    });
+  })
+);
 
 router.put(
   '/update',
   admin,
   handler(async (req, res) => {
-    const { id, name, email, address, isAdmin } = req.body;
-    await UserModel.findByIdAndUpdate(id, {
-      name,
-      email,
-      address,
-      isAdmin,
-    });
+    const { id, name, email, address, isAdmin, onEdit } = req.body;
 
-    res.send();
+    // Find the user by ID
+    const user = await UserModel.findById(id);
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    // Update only the fields provided in the request
+    if (name !== undefined) user.name = name;
+    if (email !== undefined) user.email = email;
+    if (address !== undefined) user.address = address;
+    if (isAdmin !== undefined) user.isAdmin = isAdmin;
+
+    // Optional: Handle `onEdit` separately
+    if (onEdit !== undefined) user.onEdit = onEdit;
+
+    await user.save();
+    res.status(200).send({
+      ...user.toObject(),
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    });
+  })
+);
+
+router.put(
+  '/setEditState/:userId',
+  admin,
+  handler(async (req, res) => {
+    const { userId } = req.params;
+    const { onEdit } = req.body;
+
+    const user = await UserModel.findById(userId);
+    if (!user) {
+      return res.status(404).send({ error: 'User not found' });
+    }
+
+    user.onEdit = onEdit;
+    await user.save();
+
+    res.status(200).send({
+      id: user.id,
+      onEdit: user.onEdit,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    });
   })
 );
 
@@ -160,6 +231,7 @@ const generateTokenResponse = user => {
       id: user.id,
       email: user.email,
       isAdmin: user.isAdmin,
+      oneEdit: user.onEdit,
     },
     process.env.JWT_SECRET,
     {
@@ -173,6 +245,9 @@ const generateTokenResponse = user => {
     name: user.name,
     address: user.address,
     isAdmin: user.isAdmin,
+    oneEdit: user.onEdit,
+    createdAt: user.createdAt,
+    updatedAt: user.updatedAt,
     token,
   };
 };

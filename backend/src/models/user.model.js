@@ -7,6 +7,7 @@ export const UserSchema = new Schema(
     password: { type: String },
     address: { type: String },
     isAdmin: { type: Boolean, default: false },
+    onEdit: {type: Boolean, default: false},
     isBlocked: { type: Boolean, default: false },
   },
   {

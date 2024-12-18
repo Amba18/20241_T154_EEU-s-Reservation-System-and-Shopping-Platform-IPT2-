@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { getById, updateUser } from '../../services/userService';
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import classes from './userEdit.module.css';
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
@@ -17,6 +18,7 @@ export default function UserEditPage() {
   } = useForm();
 
   const { userId } = useParams();
+  const navigate = useNavigate();
   const isEditMode = userId;
 
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility
@@ -46,6 +48,16 @@ export default function UserEditPage() {
   const handleCancel = () => {
     setPendingUserData(null); // Clear stored data
     setIsModalOpen(false); // Close modal
+  };
+
+  const handleDone = async () => {
+    try {
+      // Reset the onEdit state to false
+      await axios.put(`/api/users/setEditState/${userId}`, { onEdit: false });
+      navigate('/dashboard'); // Redirect to dashboard
+    } catch (error) {
+      console.error('Failed to reset onEdit state:', error);
+    }
   };
 
   return (
@@ -95,6 +107,13 @@ export default function UserEditPage() {
 
           <Input label="Is Admin" type="checkbox" {...register('isAdmin')} />
           <Button type="submit" text="Submit" />
+          {/* Modified Done Button */}
+          <Button
+            type="button"
+            text="Done"
+            onClick={handleDone}
+            backgroundColor="#337ab7"
+          />
         </form>
       </div>
     </div>

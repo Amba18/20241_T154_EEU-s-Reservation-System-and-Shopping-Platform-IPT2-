@@ -5,16 +5,16 @@ export const getUser = () =>
     ? JSON.parse(localStorage.getItem('user'))
     : null;
 
-export const login = async (email, password, captchaToken) => {
-  try {
-    const { data } = await axios.post('/api/users/login', { email, password, captchaToken });
-    localStorage.setItem('user', JSON.stringify(data));
-    return data;
-  } catch (error) {
-    console.error('Login error:', error.response?.data || error.message); // Improved logging
-    throw error;
-  }
-};
+    export const login = async (email, password, captchaToken) => {
+      try {
+        const { data } = await axios.post('/api/users/login', { email, password, captchaToken });
+        localStorage.setItem('user', JSON.stringify(data));
+        return data;
+      } catch (error) {
+        throw error; // Allow the error to propagate for handling in the UI
+      }
+    };
+    
 
 export const register = async (registerData) => {
   try {
@@ -40,6 +40,8 @@ export const loginWithGoogle = async (tokenId) => {
 
 export const logout = () => {
   localStorage.removeItem('user');
+
+  
 };
 
 export const updateProfile = async (user) => {

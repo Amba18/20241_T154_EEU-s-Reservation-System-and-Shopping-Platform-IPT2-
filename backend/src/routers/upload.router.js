@@ -18,12 +18,10 @@ router.post(
       res.status(BAD_REQUEST).send();
       return;
     }
-
     const imageUrl = await uploadImageToCloudinary(req.file?.buffer);
     res.send({ imageUrl });
   })
 );
-
 const uploadImageToCloudinary = imageBuffer => {
   const cloudinary = configCloudinary();
 
@@ -38,5 +36,4 @@ const uploadImageToCloudinary = imageBuffer => {
       .end(imageBuffer);
   });
 };
-
 export default router;
